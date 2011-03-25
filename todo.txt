@@ -1,0 +1,25 @@
+[ ] Google Chrome
+  [x] Install 
+  [ ] Restore Profile
+[ ] Growl
+  [x] Install
+  [ ] Settings
+[ ] Adium
+  [x] Install
+  [ ] Accounts
+[ ] KeepassX
+  [ ] Install
+  [ ] Settings
+[ ] Dropbox
+[ ] Keyboard Prefs
+[ ] VPN Setup
+ [ ] Prod
+ [ ] QADR
+ [ ] Show in Menubar
+[ ] MenuMeters
+ [ ] Install
+ [ ] Settings
+[ ] Homebrew
+ [ ] Install
+[ ] PGP Desktop
+
