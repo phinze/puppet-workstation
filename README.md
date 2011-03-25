@@ -1,6 +1,6 @@
 # Puppet a developer workstation from scratch.
 
-## <span style="color: red;">This is a work in progress!</span>
+## This is a work in progress!
 
 This is super-alpha; I'm currently running this on my machine to drive out
 changes and bugfixes.  The list of to-dos is still incredibly long, and I would
@@ -13,25 +13,12 @@ happy with them.
 ## Holy Grail
 
  1. Install OSX Snow Leopard
- 1. Pull down and run puppet-workstation:
-<pre>gem install puppet
-   curl -O http://someday.github.com/phinze/puppet-workstation.tgz
-   tar zxf puppet-workstation.tgz
-  cd puppet-workstation
-  ~/.gem/ruby/1.8/puppet apply puppet.pp
+ 1. `gem install puppet`
+ 1. `curl -O http://someday.github.com/phinze/puppet-workstation.tgz && tar zxf puppet-workstation.tgz`
+ 1. `cd puppet-workstation; ~/.gem/ruby/1.8/puppet apply puppet.pp`
  1. **Enjoy fully installed and configured developer workstation.**
 
 ### Secondary Goals
-
-**Holy Grail**:
-
- # Install OSX Snow Leopard
- # `gem install puppet`
- # `curl -O http://someday.github.com/phinze/puppet-workstation.tgz && tar zxf puppet-workstation.tgz`
- # `cd puppet-workstation; ~/.gem/ruby/1.8/puppet apply puppet.pp`
- # **Enjoy fully installed and configured developer workstation.**
-
-**Secondary Goals**:
 
  * acquire root privs only when necessary, and make it obvious why they are necessary when password is requested
  * properly connect puppet `require`s -- only one invocation of `puppet apply` should be necessary
@@ -60,9 +47,10 @@ happy with them.
  * Borrowing this from [jedi4ever](https://github.com/jedi4ever/puppet-homebrew); so far I haven't had to even look at the code.  Thanks jedi4ever!
  * **TODO**: have puppet manage the install homebrew itself
 
-## Future features
+## A small selection of future features
 
  * Install and manage rvm rubies and gemsets
  * Clone git repositories into place
  * Clone and symlink in dotfiles from a repository
  * Lots of app-specfic configuration abilities: Terminal, Adium, Chrome, other System Preferences
+ * Pies; skies; etc...
