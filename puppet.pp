@@ -1,4 +1,5 @@
 import "classes/*.pp"
+import "puppet-rvm"
 
 class workstation {
   package { "googlechrome":
@@ -29,6 +30,12 @@ class workstation {
   package { "caffeine":
     source => "http://download.lightheadsw.com/download.php?software=caffeine",
     provider => macapp
+  }
+
+  include rvm
+  rvm_ruby { "ruby-1.8.7-p249":
+    default_ruby => true,
+    ensure => present
   }
 
   include adium
