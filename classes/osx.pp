@@ -24,15 +24,17 @@ class osx {
     apple_preference { "map-capslock-to-control-internal-macbook-keyboard":
       domain => "~/Library/Preferences/ByHost/.GlobalPreferences.8FBA4583-7B33-5F6A-8999-5706003F3014",
       key => " com.apple.keyboard.modifiermapping.1452-544-0",
-      value => "(({HIDKeyboardModifierMappingDst = 2; HIDKeyboardModifierMappingSrc = 0;}))",
-      type => array
+      value => "((({HIDKeyboardModifierMappingDst = 2; HIDKeyboardModifierMappingSrc = 0;})))",
+      type => array,
+      ensure => present
     }
 
     apple_preference { "map-capslock-to-control-external-wired-apple-keyboard":
       domain => "~/Library/Preferences/ByHost/.GlobalPreferences.8FBA4583-7B33-5F6A-8999-5706003F3014",
       key => " com.apple.keyboard.modifiermapping.1452-566-0",
-      value => "(( { HIDKeyboardModifierMappingDst = 2; HIDKeyboardModifierMappingSrc = 0; }))",
-      type => array
+      value => "((({ HIDKeyboardModifierMappingDst = 2; HIDKeyboardModifierMappingSrc = 0; })))",
+      type => array,
+      ensure => present
     }
   }
 
