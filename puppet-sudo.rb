@@ -24,7 +24,7 @@ File.open(scriptfile, 'w') do |f|
   f.puts script
 end
 
-compiled_result = `/usr/bin/osacompile -o #{compiledscript} #{scriptfile}`
+compiled_result = `/usr/bin/osacompile -o #{compiledscript} #{scriptfile} 2>/dev/null`
 
 result = `#{compiledapplet}`
 
