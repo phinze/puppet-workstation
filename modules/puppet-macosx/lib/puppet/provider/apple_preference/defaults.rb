@@ -25,6 +25,14 @@ Puppet::Type.type(:apple_preference).provide(:defaults) do
   end
 
   def _normalize_value(value)
-    value.to_s.gsub(/\n/, ' ').gsub(/ +/, '').strip
+    normalized_value = value.to_s.gsub(/\n/, ' ').gsub(/ +/, '').strip
+    case normalized_value
+    when 'true'
+      '1'
+    when 'false'
+      '0'
+    else
+      normalized_value
+    end
   end
 end
