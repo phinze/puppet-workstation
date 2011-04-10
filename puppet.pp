@@ -38,6 +38,24 @@ class workstation {
     ensure => present
   }
 
+  package { "python":
+    provider => homebrew
+  }
+
+  package { "pip":
+    provider => homebrew,
+    require => Package["python"]
+  }
+
+  package { "redis":
+    provider => homebrew
+  }
+
+  package { "mercurial":
+    provider => pip,
+    require => Package["pip"]
+  }
+
   include adium
   include growl
   include osx

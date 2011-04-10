@@ -1,0 +1,3 @@
+[submodule "modules/puppet-pip"]
+	path = modules/puppet-pip
+	url = git@github.com:phinze/puppet-pip.git

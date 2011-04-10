@@ -47,6 +47,11 @@ happy with them.
  * Borrowing this from [jedi4ever](https://github.com/jedi4ever/puppet-homebrew); so far I haven't had to even look at the code.  Thanks jedi4ever!
  * **TODO**: have puppet manage the install homebrew itself
 
+### <tt>pip</tt> package provider
+
+ * Borrowing this from [rcrowley](https://github.com/rcrowley/puppet-pip); forked and hacked it up a bit; planning to push changes back up.  Thanks rcrowley!
+ * **TODO**: automatically have all pip provided packages depend on the pip homebrew package
+
 ## A small selection of future features
 
  * Install and manage rvm rubies and gemsets
