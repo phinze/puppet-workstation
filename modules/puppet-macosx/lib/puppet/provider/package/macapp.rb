@@ -57,20 +57,32 @@ END
   def install
     _validate_resource
     _with_extracted_mountpoints(_resolve_path(@resource[:source])) do |mountpoint|
-      Dir.entries(mountpoint).grep(/(#{VALID_SOURCE_SUFFIXES.join('|')})$/) do |path|
+      all_extracted_files = Dir.glob(File.join(mountpoint, '**', '*')).reject { |x| x =~ /__MACOSX/ }
+      if resource[:flavor]
+        actionable_files = all_extracted_files.grep(/(#{resource[:flavor]})$/)
+      else
+        actionable_files = all_extracted_files.grep(/(#{VALID_SOURCE_SUFFIXES.join('|')})$/)
+      end
+      actionable_files.each do |path|
         suffix = path.split('.').last
-        send("install_#{suffix}".to_sym, File.join(mountpoint, path))
+        send("install_#{suffix}".to_sym, path)
       end
     end
     _save_receipt
   end
 
   def install_pkg(pkgpath)
-    installer_command = [command(:installer), "-pkg", pkgpath, "-target", "/"]
-    foobar = execute(installer_command, :failonfail => false)
-    debugger
-    script = %(do shell script "#{installer_command.join(' ')}" with administrator privileges)
-    #execute([command(:osascript), '-e', script])
+    begin
+      installer_command = [command(:installer), "-pkg", pkgpath, "-target", "/"]
+      result = execute(installer_command)
+    rescue Puppet::ExecutionFailure => e
+      if e.message =~ /installer: This package requires authentication to install./
+        script = %(do shell script "#{installer_command.join(' ')}" with administrator privileges)
+        execute([command(:osascript), '-e', script])
+      else
+        raise Puppet::ExecutionFailure, e.message
+      end
+    end
   end
   alias :install_mpkg :install_pkg
 
@@ -137,14 +149,20 @@ END
       destdir = "/tmp/puppet_#{@resource[:name]}_extracted"
       mkdir '-p', destdir
       tar 'zxf', path, '-C', destdir
-      yield destdir
-      rm '-rf', destdir
+      begin
+        yield destdir
+      ensure
+        rm '-rf', destdir
+      end
     elsif _zip?(path)
       destdir = "/tmp/puppet_#{@resource[:name]}_extracted"
       mkdir '-p', destdir
       unzip '-d', destdir, path
-      yield destdir
-      rm '-rf', destdir
+      begin
+        yield destdir
+      ensure
+        rm '-rf', destdir
+      end
     else
       raise "uh oh, could not identify type of #{path}"
     end

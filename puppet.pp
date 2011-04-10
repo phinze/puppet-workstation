@@ -32,6 +32,23 @@ class workstation {
     provider => macapp
   }
 
+  package { "simbl":
+    source => "http://www.culater.net/dl/files/SIMBL-0.9.9.zip",
+    flavor => "SIMBL-0.9.9.pkg",
+    provider => macapp
+  }
+
+  package { "mouseterm":
+    source => "http://bitheap.org/mouseterm/MouseTerm.dmg",
+    provider => macapp
+  }
+
+  package { "iterm2":
+    source => "http://iterm2.googlecode.com/files/iTerm2-alpha17.zip",
+    provider => macapp
+  }
+
+
   include rvm
   rvm_ruby { "ruby-1.8.7-p249":
     default_ruby => true,
@@ -69,6 +86,6 @@ class workstation {
   include vim::supporting-tools
 }
 
-node default {
+node rasputin {
   include workstation
 }
