@@ -54,3 +54,19 @@ happy with them.
  * Clone and symlink in dotfiles from a repository
  * Lots of app-specfic configuration abilities: Terminal, Adium, Chrome, other System Preferences
  * Pies; skies; etc...
+
+## Weirdness with `launchd` services
+
+Puppet comes with a built-in launchd provider for services, but I've been
+having quite a bit of trouble with it.
+
+This was one thing I had to do:
+
+  sudo chgrp admin /var/db/launchd.db/com.apple.launchd/overrides.plist
+  sudo chmod 660 /var/db/launchd.db/com.apple.launchd/overrides.plist
+
+Another problem is `launchctl` will be unable to connect to the correct socket
+when run from tmux, unless it's being run from sudo.  This means that
+'com.apple.Dock.agent' won't show up in `launchctl list`.  I'm punting on
+launchd services for now and doing a `killall Dock` to make Dock config
+settings take effect.

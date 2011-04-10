@@ -41,9 +41,10 @@ class workstation {
   include adium
   include growl
   include osx
+#  include osx::fix-launchd-overrides-permission
   include osx::dock
-  include osx::dock::autohide
-  include osx::dock::placement::top-right
+  include osx::dock::autohide::on
+  include osx::dock::placement::right
   include osx::map-capslock-to-control
   include quicksilver
   include vim
